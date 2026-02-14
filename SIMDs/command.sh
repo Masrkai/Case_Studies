@@ -1,1 +1,0 @@
-g++ -O3 -march=native -ftree-vectorize -fopt-info-vec-missed -fopt-info-vec-optimized -fopt-info-vec-note -fverbose-asm -S vector_test.cpp -o vector_test.s

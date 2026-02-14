@@ -3,7 +3,7 @@
 #	compiled by GNU C version 14.3.0, GMP version 6.3.0, MPFR version 4.2.2, MPC version 1.3.1, isl version isl-0.20-GMP
 
 # GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
-# options passed: -mno-omit-leaf-frame-pointer -mtune=generic -march=x86-64 -fno-omit-frame-pointer
+# options passed: -mno-omit-leaf-frame-pointer -mtune=generic -march=x86-64 -O0 -fno-omit-frame-pointer
 	.text
 #APP
 	.globl _ZSt21ios_base_library_initv
