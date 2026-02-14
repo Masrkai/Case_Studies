@@ -18,3 +18,7 @@ The primary goals of this technical study are as follows:
 * **Data Recovery:** To successfully mount and retrieve specific files from the existing file system on the HDD.
 * **OS Virtualization:** To configure a Virtual Machine (VM) capable of booting the legacy Windows 7 installation directly from the physical HDD.
 * **Authentication:** To access the Windows 7 user environment and authenticate into the user account to facilitate file recovery.
+
+## Solution FOUND ON 10/2/2026
+
+the disk if not encrypted can be mounted using the `ntfs3g` package
