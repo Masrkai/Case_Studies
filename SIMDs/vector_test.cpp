@@ -1,5 +1,4 @@
 #include <iostream>
-#include <chrono>
 
 #define N 1024  // Array size
 
