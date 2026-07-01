@@ -1,0 +1,7 @@
+#! Services
+com.facebook.system
+com.facebook.appmanager
+com.facebook.services
+
+#? App
+com.facebook.katana
