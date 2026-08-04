@@ -36,5 +36,31 @@ $$\lim_{x \to 1} \frac{x^2 - 1}{x - 1} = 2$$
 
 Remember: The limit $\lim_{x \to 1} f(x) = 2$, even though $f(1)$ is undefined.
 
+## 5. One-Sided Limits
+Sometimes, a function behaves differently depending on the direction from which we approach a point.
+
+- **Left-hand limit ($x \to a^-$):** The value $f(x)$ approaches as $x$ gets closer to $a$ from values less than $a$.
+- **Right-hand limit ($x \to a^+$):** The value $f(x)$ approaches as $x$ gets closer to $a$ from values greater than $a$.
+
+Consider the function $f(x) = \frac{|x|}{x}$. Near $x=0$:
+$$\lim_{x \to 0^-} \frac{|x|}{x} = -1 \quad \text{and} \quad \lim_{x \to 0^+} \frac{|x|}{x} = 1$$
+
+![One-Sided Limits Illustration](assets/onesided_limits.png)
+
+Since the left-hand limit (-1) is not equal to the right-hand limit (1), the overall limit $\lim_{x \to 0} \frac{|x|}{x}$ **does not exist**.
+
+## 6. Jump Discontinuity
+A "jump" or "break" occurs when the left-hand limit and the right-hand limit exist but are not equal.
+
+Consider the piecewise function:
+$$f(x) = \begin{cases} 2 - x^2 & \text{for } x < 1 \\ x + 1 & \text{for } x \ge 1 \end{cases}$$
+
+![Jump Discontinuity Illustration](assets/jump_discontinuity.png)
+
+In this case, as $x \to 1$:
+$$\lim_{x \to 1^-} (2 - x^2) = 1 \quad \text{and} \quad \lim_{x \to 1^+} (x + 1) = 2$$
+
+Since $1 \neq 2$, the overall limit $\lim_{x \to 1} f(x)$ **does not exist**.
+
 ## Intuition
 Calculus is not about calculating a static value; it is about analyzing *behavior* and *patterns* as we approach specific points.
