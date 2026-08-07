@@ -122,6 +122,27 @@ If either $f(a)$ or $\lim_{x\to a} f(x)$ fails to exist, or if they are not equa
 
 ![Discontinuities](assets/compare_discontinuity.svg)
 
+#### Example on Continuity
+
+![piecewise2](assets/piecewise_limit_graph.svg)
+
+Reading everything off the graph (holes at (−2, 1), (1, 2), (3, 2); solid dots at (1, 1), (3, 1)):
+
+**One‑sided behavior at each point**
+
+| $a$ | $f(a)$ | $\lim_{x\to a^-}$ | $\lim_{x\to a^+}$ | Conclusion |
+|---|---|---|---|---|
+| $-2$ | undefined | 1 | 1 | limit exists, but no value |
+| $-1$ | 1 | 1 | 1 | **continuous** |
+| $1$ | 1 | 2 | 2 | limit = 2 ≠ f(1) = 1 |
+| $3$ | 1 | 2 | 1 | **right‑continuous** (right limit = f(3) = 1, left limit = 2) |
+| $4$ | ≈0.6 | equal | equal | **continuous** |
+
+- Removable discontinuities (limit exists): `-2, 1`
+- Jump discontinuities (left and right limits disagree): `3`
+
+Quick justification: at −2 and 1 the two‑sided limit exists (1 and 2 respectively) but the function value is missing/mismatched → removable. At 3 the left limit is 2 while the right limit and the function value are both 1 → jump, and since $f(3)$ equals the right‑hand limit, $f$ is right‑continuous there. At −1 and 4 the curve passes through with no break → continuous.
+
 ## Intuition
 
 Calculus is not about calculating a static value; it is about analyzing *behavior* and *patterns* as we approach specific points.

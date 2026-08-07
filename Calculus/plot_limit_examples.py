@@ -64,8 +64,10 @@ def setup_ax(ax, title=None):
         FuncFormatter(lambda v, _: "" if np.isclose(v, 0) else f"{v:g}"))
 
 def place_axis_labels(ax, xlabel='x', ylabel='f(x)', x_pos=None, y_pos=None):
-    if x_pos is None: x_pos = ax.get_xlim()[1]
-    if y_pos is None: y_pos = ax.get_ylim()[1]
+    if x_pos is None:
+         x_pos = ax.get_xlim()[1]
+    if y_pos is None:
+         y_pos = ax.get_ylim()[1]
     ax.text(x_pos, -0.3, xlabel, color=LINE, fontsize=10, ha='right', va='top')
     ax.text(0.3, y_pos, ylabel, color=LINE, fontsize=10, ha='right', va='bottom')
 
@@ -182,7 +184,7 @@ def plot_all_conditions_combined(save_path):
     setup_ax(axs[1, 1], 'Oscillates')
     axs[1, 1].plot(xs4, F["oscillate"](xs4), color=LINE)
 
-    plt.tight_layout(rect=[0, 0.03, 1, 0.95])
+    plt.tight_layout(rect=(0, 0.03, 1, 0.95))
     plt.savefig(save_path, facecolor=BG)
     plt.close()
 
@@ -301,6 +303,48 @@ def plot_compare_discontinuity(save_path):
     plt.close()
 
 
+def plot_piecewise_limit_graph(save_path=None, ax=None):
+    """Worksheet graph: holes at (-2,1),(1,2),(3,2); solid dots at (1,1),(3,1);
+    arrows on both tails."""
+    if ax is None:
+        fig, ax = plt.subplots(figsize=(9, 4.6), facecolor=BG)
+        setup_ax(ax)
+
+    # Ad-hoc visual pieces (plain NumPy, same convention as plot_mit_example)
+    x1 = np.linspace(-3.05, -2, 200)                  # left tail, min at (-2.5, 0)
+    y1 = 4*(x1 + 2.5)**2
+    x2 = np.linspace(-2, -1, 200)                     # hump peaking at 2
+    y2 = 1.5 - 0.5*np.cos(2*np.pi*(x2 + 2))
+    x3 = np.linspace(-1, 1, 200)                      # line segment → hole (1, 2)
+    y3 = 1.5 + 0.5*x3
+    x4 = np.linspace(1, 3, 300)                       # dip between the two holes
+    y4 = 1.5 + 0.5*np.cos(np.pi*(x4 - 1))
+    x5 = np.linspace(3, 4.92, 400)                    # oscillating right tail
+    y5 = 1 + 0.3*(x5-3) + (0.4 + 0.35*(x5-3))*np.cos(2.5*np.pi*(x5-3.6))
+
+    for xi, yi in [(x1, y1), (x2, y2), (x3, y3), (x4, y4), (x5, y5)]:
+        ax.plot(xi, yi, color=LINE, lw=2, solid_capstyle='round')
+
+    # holes (open circles) and defined values (solid dots)
+    ax.scatter(*zip(*[(-2, 1), (1, 2), (3, 2)]),
+               s=45, facecolors=BG, edgecolors=LINE, lw=2, zorder=5)
+    ax.scatter(*zip(*[(1, 1), (3, 1)]),
+               s=45, color=LINE, zorder=5)
+
+    curve_arrow(ax, x1, y1, at='start', color=LINE, lw=2)   # left arrow ↑
+    curve_arrow(ax, x5, y5, color=LINE, lw=2)               # right arrow ↑
+
+    ax.set_xticks(range(-3, 5))
+    ax.set_yticks([1, 2, 3])
+    ax.set_xlim(-3.4, 5.2)
+    ax.set_ylim(-0.4, 3.4)
+    place_axis_labels(ax, x_pos=5.1, y_pos=3.3)
+
+    if save_path:
+        plt.tight_layout()
+        plt.savefig(save_path, facecolor=BG)
+        plt.close()
+
 # ── Main ────────────────────────────────────────────────────────────────────
 if __name__ == "__main__":
     os.makedirs("assets", exist_ok=True)
@@ -313,3 +357,4 @@ if __name__ == "__main__":
     plot_all_conditions_combined("assets/four_conditions.svg")
     plot_mit_example("assets/mit_example.svg")
     plot_compare_discontinuity("assets/compare_discontinuity.svg")
+    plot_piecewise_limit_graph("assets/piecewise_limit_graph.svg")
